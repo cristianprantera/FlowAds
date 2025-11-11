@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>FlowAds - Demo</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 24px;">
+  <h1>FlowAds — Demo (Simular llegada)</h1>
+  <p>Presioná <b>Simular llegada</b> para que el backend haga las validaciones en el momento y te devuelva las ofertas.</p>
+
+  <label>Número (ej: 541122358032):</label><br/>
+  <input id="phone" value="541122358032" style="width:300px; padding:6px; margin-bottom:8px"/><br/>
+
+  <label>Latitud:</label><input id="lat" value="-34.5715" style="width:140px; margin-right:10px"/>
+  <label>Longitud:</label><input id="lon" value="-58.3963" style="width:140px"/><br/><br/>
+
+  <button onclick="simular()" style="padding:10px 16px; font-size:16px">Simular llegada</button>
+
+  <h2>Resultado:</h2>
+  <pre id="result" style="background:#f2f2f2;padding:12px;border-radius:6px;"></pre>
+
+  <script>
+    async function simular() {
+      const phone = document.getElementById('phone').value;
+      const lat = parseFloat(document.getElementById('lat').value);
+      const lon = parseFloat(document.getElementById('lon').value);
+
+      const res = await fetch('/flowads/oferta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber: phone, latitude: lat, longitude: lon })
+      });
+      const j = await res.json();
+      document.getElementById('result').innerText = JSON.stringify(j, null, 2);
+    }
+  </script>
+</body>
+</html>
