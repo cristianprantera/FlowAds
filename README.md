@@ -58,7 +58,6 @@ Proyecto destacado por su enfoque en **privacidad, seguridad, escalabilidad e im
 ## 👨‍💻 Autores
 
 * **Cristian Prantera** – Desarrollador Backend y expositor técnico
-* 
 ---
 
 > “No vendemos datos, damos contexto.
